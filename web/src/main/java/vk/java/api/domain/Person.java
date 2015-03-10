@@ -17,8 +17,8 @@ public class Person implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
-    private Integer personId;
-    private Integer sex;
+    private Long personId;
+    private Long sex;
 
     private String firstName;
     private String lastName;
@@ -40,12 +40,12 @@ public class Person implements Serializable
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "PERSON_ID")
-    public Integer getPersonId()
+    public Long getPersonId()
     {
         return personId;
     }
 
-    public void setPersonId(Integer personId)
+    public void setPersonId(Long personId)
     {
         this.personId = personId;
     }
@@ -73,12 +73,12 @@ public class Person implements Serializable
     }
 
     @Column(name = "SEX")
-    public Integer getSex()
+    public Long getSex()
     {
         return sex;
     }
 
-    public void setSex(Integer set)
+    public void setSex(Long set)
     {
         this.sex = set;
     }
