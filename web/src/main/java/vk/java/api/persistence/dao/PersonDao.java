@@ -3,7 +3,7 @@ package vk.java.api.persistence.dao;
 import vk.java.api.persistence.domain.Person;
 
 /**
- * package: vk.java.api.persistance.dao
+ * package: vk.java.api.persistence.dao
  * date: 09.03.15
  *
  * @author Skurishin Vladislav
