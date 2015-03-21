@@ -1,4 +1,4 @@
-package vk.java.api.domain;
+package vk.java.api.persistence.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,10 +6,13 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * package: vk.java.api.domain
+ * package: vk.java.api.persistance.domain
  * date: 06.03.15
  *
  * @author Skurishin Vladislav
+ *
+ * TODO
+ * Нужен билдер для pojo классов.
  */
 @Entity
 @Table(name = "PERSON")
@@ -78,9 +81,10 @@ public class Person implements Serializable
         return sex;
     }
 
-    public void setSex(Long set)
+    public Person setSex(Long set)
     {
         this.sex = set;
+        return this;
     }
 
     @Column(name = "B_DATE")
@@ -89,9 +93,10 @@ public class Person implements Serializable
         return birthday;
     }
 
-    public void setBirthday(String birthday)
+    public Person setBirthday(String birthday)
     {
         this.birthday = birthday;
+        return this;
     }
 
     @Column(name = "PHOTO")
@@ -100,9 +105,10 @@ public class Person implements Serializable
         return photo;
     }
 
-    public void setPhoto(String photo)
+    public Person setPhoto(String photo)
     {
         this.photo = photo;
+        return this;
     }
 
     @Column(name = "NICKNAME")
@@ -111,8 +117,9 @@ public class Person implements Serializable
         return nickName;
     }
 
-    public void setNickName(String nickName)
+    public Person setNickName(String nickName)
     {
         this.nickName = nickName;
+        return this;
     }
 }

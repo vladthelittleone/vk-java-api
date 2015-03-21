@@ -1,4 +1,4 @@
-package vk.java.api.domain;
+package vk.java.api.persistence.domain;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * package: vk.java.api.domain
+ * package: vk.java.api.persistance.domain
  * date: 11.03.15
  *
  * @author Skurishin Vladislav
