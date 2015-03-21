@@ -51,7 +51,7 @@ public class PersistenceConfig
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    Properties hibernateProperties()
+    private Properties hibernateProperties()
     {
         return new Properties()
         {
