@@ -22,4 +22,9 @@
     <bean name="PersonDao" class="vk.java.api.persistence.dao.PersonMySqlDao">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
+
+    <bean name="LikesDao" class="vk.java.api.persistence.dao.LikesMySqlDao">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
 </beans>
