@@ -19,9 +19,9 @@ public class TestingHibernateConnectionClass
                 new String[] { "applicationContext.xml" }, true);
         PersonDao dao = (PersonDao) context.getBean("PersonDao");
 
-        Person data = new Person("Sam", "Daniels")
-                .setBirthday("22.22.22")
-                .setNickName("Blind")
+        Person data = new Person("Sam2", "Daniels2")
+                .setBirthday("33.33.33")
+                .setNickName("VaimeR")
                 .setPhoto("http://google.com/photo/?sda#@wd2@#$$5")
                 .setSex(1L);
 
