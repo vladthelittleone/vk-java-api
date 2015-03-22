@@ -19,11 +19,11 @@
     </servlet-mapping>
 
     <!--<context-param>-->
-        <!--<param-name>logbackConfigLocation</param-name>-->
+        <!--<param-bindingName>logbackConfigLocation</param-bindingName>-->
         <!--<param-value>file:${billingConfig}/logback.xml</param-value>-->
     <!--</context-param>-->
     <!--<context-param>-->
-        <!--<param-name>logbackRefreshInterval</param-name>-->
+        <!--<param-bindingName>logbackRefreshInterval</param-bindingName>-->
         <!--&lt;!&ndash; in millis &ndash;&gt;-->
         <!--<param-value>10000</param-value>-->
     <!--</context-param>-->
