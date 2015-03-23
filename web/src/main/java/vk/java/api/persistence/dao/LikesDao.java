@@ -16,9 +16,12 @@ public interface LikesDao
     public Likes get(Long id);
 
     /**
-     * Добавляем новую информацию о лайках человека
-     * @param like
-     * @return
+     * Изменяем информацию о лайках человека
+     */
+    public int change(Long id);
+
+    /**
+     * Добавляем новую запись о лайках человека
      */
     public Long add(Likes like);
 }

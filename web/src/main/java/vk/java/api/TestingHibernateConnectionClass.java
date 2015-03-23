@@ -9,16 +9,18 @@ import vk.java.api.persistence.domain.Person;
 /**
  * package: vk.java.api
  * date: 21.03.15
- *
+ * <p/>
  * Для запуска нужно перетащить applicationContext.xml и
  * hibernate-context.xml в resources.
+ *
  * @author Skurishin Vladislav
  */
 public class TestingHibernateConnectionClass
 {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                new String[] { "applicationContext.xml" }, true);
+                new String[]{"src/main/webapp/WEB-INF/applicationContext.xml"}, true);
         PersonDao dao = (PersonDao) context.getBean("PersonDao");
 
         Person data = new Person("Sam", "Daniels")
@@ -29,17 +31,24 @@ public class TestingHibernateConnectionClass
 
         Long id = dao.add(data);
 
-        System.out.println (dao.get(id).getNickName());
+        System.out.println(dao.get(id).getNickName());
 
         LikesDao likesDao = (LikesDao) context.getBean("LikesDao");
 
         Likes data1 = new Likes();
-        data1.setAmount(1000L);
+        data1.setAmount(100L);
         data1.setPersonId(1L);
 
-        Long id1 = likesDao.add(data1);
+        likesDao.add(data1);
 
-        System.out.println ("Amout of like" + likesDao.get(id1).getAmount());
+        Likes data2 ;
+        data2 = likesDao.get(1L);
+        System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
+        likesDao.change(1L);
+        data2 = likesDao.get(1L);
+        System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
+
+
     }
 
 }
