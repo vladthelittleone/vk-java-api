@@ -35,6 +35,7 @@ public class ShardingDataSource extends DelegatingDataSource
         }
 
         targetDataSource.setTargetDataSources(m);
+        targetDataSource.afterPropertiesSet();
         setTargetDataSource(targetDataSource);
     }
 
@@ -46,6 +47,7 @@ public class ShardingDataSource extends DelegatingDataSource
             String bindingName = ShardingContextHolder.getBindingName();
             Object key = ShardingContextHolder.getKey();
 
+            System.out.println("HERE" + bindingName + " " + key);
             for (DataSourceBinding binding : dataSourceBindings)
             {
                 if (binding.getBindingName().equals(bindingName))

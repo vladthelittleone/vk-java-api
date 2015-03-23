@@ -9,5 +9,5 @@ import java.util.Collection;
  */
 public interface DistributionStrategy
 {
-    DataSource distribute(Object key, Collection<DataSource> dataSources);
+    Object distribute(Object key, Collection<DataSource> dataSources);
 }

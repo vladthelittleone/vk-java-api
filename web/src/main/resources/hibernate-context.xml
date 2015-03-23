@@ -18,7 +18,7 @@
                 <ref bean="likesDataSourceBinding"/>
             </list>
         </constructor-arg>
-        <constructor-arg name="strategy" value="vk.java.api.persistence.sharding.DefaultDistributionStrategy"/>
+        <constructor-arg name="strategy" ref="strategy"/>
     </bean>
 
     <bean id="personDataSourceBinding" class="vk.java.api.persistence.sharding.DataSourceBinding">
@@ -45,4 +45,5 @@
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean name="strategy" class="vk.java.api.persistence.sharding.DefaultDistributionStrategy"/>
 </beans>
