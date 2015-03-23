@@ -6,7 +6,7 @@ import org.springframework.util.Assert;
  * @author Skurishin Vladislav
  * @since 22.03.15
  */
-public class ShardingContextHolder
+public final class ShardingContextHolder
 {
     private static final ThreadLocal<String> bindingNameHolder = new ThreadLocal<>();
     private static final ThreadLocal<Object> key = new ThreadLocal<>();

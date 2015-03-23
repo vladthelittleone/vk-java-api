@@ -14,8 +14,8 @@ import java.util.Map;
  */
 public class ShardingDataSource extends DelegatingDataSource
 {
-    private Collection<DataSourceBinding> dataSourceBindings;
-    private DistributionStrategy strategy;
+    private final Collection<DataSourceBinding> dataSourceBindings;
+    private final DistributionStrategy strategy;
 
     public ShardingDataSource(Collection<DataSourceBinding> dataSourceBindings, DistributionStrategy strategy)
     {

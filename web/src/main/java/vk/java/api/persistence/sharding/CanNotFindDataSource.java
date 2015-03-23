@@ -8,6 +8,7 @@ public class CanNotFindDataSource extends Exception
 {
     public CanNotFindDataSource()
     {
+        super();
     }
 
     public CanNotFindDataSource(String message)
