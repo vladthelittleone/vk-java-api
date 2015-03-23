@@ -11,6 +11,10 @@ public class ShardingContextHolder
     private static final ThreadLocal<String> bindingNameHolder = new ThreadLocal<>();
     private static final ThreadLocal<Object> key = new ThreadLocal<>();
 
+    private ShardingContextHolder()
+    {
+    }
+
     public static void set(String bindingName, Long k)
     {
         Assert.notNull(bindingName, "Data source name can't be null");

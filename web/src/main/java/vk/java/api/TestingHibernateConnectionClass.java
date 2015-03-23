@@ -14,7 +14,7 @@ import vk.java.api.persistence.domain.Person;
  */
 public class TestingHibernateConnectionClass
 {
-    public static void main(String[] args) {
+    public static void main(String... args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 new String[] { "applicationContext.xml" }, true);
         PersonDao dao = (PersonDao) context.getBean("PersonDao");

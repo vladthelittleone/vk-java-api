@@ -9,9 +9,9 @@ import java.util.Collection;
  */
 public class DataSourceBinding
 {
-    private Collection<DataSource> dataSources;
+    private final Collection<DataSource> dataSources;
 
-    private String bindingName;
+    private final String bindingName;
 
     public DataSourceBinding(String bindingName, Collection<DataSource> dataSources)
     {
