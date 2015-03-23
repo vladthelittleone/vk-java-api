@@ -1,0 +1,5 @@
+language: java/js/cpp
+path: src/main/java
+ignored:
+        - UselessParentheses
+        - StrangeRule
