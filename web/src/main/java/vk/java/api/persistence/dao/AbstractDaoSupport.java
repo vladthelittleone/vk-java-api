@@ -15,6 +15,7 @@ public class AbstractDaoSupport extends HibernateShardingDaoSupport
     {
         ShardingContextHolder.set(getBindingName(), 0L);
 
+        // Взять первое AtomicInteger значение в базе и хранить в кэше.
         String SEQ_SQL = String.format("SELECT %s.nextval AS num FROM person", sequence);
 
         Query query = getSessionFactory().getCurrentSession().createSQLQuery(SEQ_SQL)
