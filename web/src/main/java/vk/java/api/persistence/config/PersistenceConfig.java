@@ -69,7 +69,6 @@ public class PersistenceConfig
                 setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
                 setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
                 setProperty("hibernate.globally_quoted_identifiers", env.getProperty("hibernate.globally_quoted_identifiers"));
-                setProperty("hibernate.connection.driver_class", env.getProperty("jdbc.driver.name"));
             }
         };
     }

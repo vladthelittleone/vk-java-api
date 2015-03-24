@@ -24,11 +24,12 @@ public class TestingHibernateConnectionClass
                 .setBirthday("22.22.22")
                 .setNickName("Blind")
                 .setPhoto("http://google.com/photo/?sda#@wd2@#$$5")
-                .setSex(1L);
+                .setSex(1L)
+                .setPersonId(1L);
 
-        Long id = dao.add(data);
+        dao.add(data);
 
-        System.out.println (dao.get(id).getNickName());
+        System.out.println (dao.get(1L).getNickName());
     }
 
 }

@@ -3,8 +3,9 @@ package vk.java.api.persistence.dao;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
+import org.hibernate.SessionFactory;
 import vk.java.api.persistence.domain.Likes;
+import vk.java.api.persistence.sharding.DataSourceBinding;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,8 +17,13 @@ import java.util.List;
  * @author Skurishin Vladislav
  */
 @Transactional
-public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
+public class LikesMySqlDao extends AbstractDaoSupport implements LikesDao
 {
+    public LikesMySqlDao(DataSourceBinding binding, SessionFactory sessionFactory)
+    {
+        bindingName = binding.getBindingName();
+        setSessionFactory(sessionFactory);
+    }
 
     @Override
     public Likes get(Long id)
@@ -49,7 +55,6 @@ public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
     @Override
     public Long add(Likes like)
     {
-
         // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
 

@@ -2,6 +2,8 @@ package vk.java.api.persistence.dao;
 
 import vk.java.api.persistence.domain.Likes;
 
+import java.io.Serializable;
+
 /**
  * package: vk.java.api.persistence.dao
  * date: 11.03.15
@@ -23,5 +25,5 @@ public interface LikesDao
     /**
      * Добавляем новую запись о лайках человека
      */
-    public Long add(Likes like);
+    public Serializable add(Likes like);
 }

@@ -17,7 +17,7 @@ public final class ShardingContextHolder
 
     public static void set(String bindingName, Long k)
     {
-        Assert.notNull(bindingName, "Data source name can't be null");
+        Assert.notNull(bindingName, "Binding name can't be null");
         Assert.notNull(k, "Key can't be null");
         bindingNameHolder.set(bindingName);
         key.set(k);
@@ -25,7 +25,7 @@ public final class ShardingContextHolder
 
     public static void setBindingName(String bindingName)
     {
-        Assert.notNull(bindingName, "Data source name can't be null");
+        Assert.notNull(bindingName, "Binding name can't be null");
         bindingNameHolder.set(bindingName);
     }
 
