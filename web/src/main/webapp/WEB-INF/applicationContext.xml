@@ -9,5 +9,6 @@
     <context:annotation-config/>
     <context:component-scan base-package="vk.java.api"/>
 
-    <import resource="hibernate-context.xml" />
+    <import resource="hibernate-context.xml"/>
+
 </beans>

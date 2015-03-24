@@ -18,7 +18,6 @@ import java.util.List;
 @Transactional
 public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
 {
-
     @Override
     public Likes get(Long id)
     {
@@ -26,13 +25,13 @@ public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
         // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
 
-       // List like = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID = " + id)
-             //   .addEntity(Likes.class).list();
+        // List like = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID = " + id)
+        //   .addEntity(Likes.class).list();
 
-        Query query = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID like :id " ).addEntity(Likes.class);
-        List result = query.setLong("id",id).list();
+        Query query = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID like :id ").addEntity(Likes.class);
+        List result = query.setLong("id", id).list();
         //Возвращаем информацию о лайках  конкретного пользоватяля
-       // return (Likes) like.get(0);
+        // return (Likes) like.get(0);
         return (Likes) result.get(0);
     }
 

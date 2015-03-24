@@ -1,9 +1,7 @@
 package vk.java.api;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import vk.java.api.persistence.dao.LikesDao;
 import vk.java.api.persistence.dao.PersonDao;
-import vk.java.api.persistence.domain.Likes;
 import vk.java.api.persistence.domain.Person;
 
 /**
@@ -17,10 +15,9 @@ import vk.java.api.persistence.domain.Person;
  */
 public class TestingHibernateConnectionClass
 {
-    public static void main(String[] args)
-    {
+    public static void main(String... args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                new String[]{"applicationContext.xml"}, true);
+                new String[] { "applicationContext.xml" }, true);
         PersonDao dao = (PersonDao) context.getBean("PersonDao");
 
         Person data = new Person("Sam", "Daniels")
@@ -31,24 +28,7 @@ public class TestingHibernateConnectionClass
 
         Long id = dao.add(data);
 
-        System.out.println(dao.get(id).getNickName());
-
-        LikesDao likesDao = (LikesDao) context.getBean("LikesDao");
-
-        Likes data1 = new Likes();
-        data1.setAmount(100L);
-        data1.setPersonId(1L);
-
-        likesDao.add(data1);
-
-        Likes data2 ;
-        data2 = likesDao.get(1L);
-        System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
-        likesDao.increaseLikeAmount(1L);
-        data2 = likesDao.get(1L);
-        System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
-
-
+        System.out.println (dao.get(id).getNickName());
     }
 
 }
