@@ -1,9 +1,8 @@
 package vk.java.api.persistence.dao;
 
-import org.hibernate.LockMode;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import vk.java.api.persistence.domain.Likes;
 
@@ -23,23 +22,26 @@ public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
     @Override
     public Likes get(Long id)
     {
-        System.out.println("Id of person" + id);
+
         // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
 
-        List like = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID = " + id)
-                .addEntity(Likes.class).list();
+       // List like = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID = " + id)
+             //   .addEntity(Likes.class).list();
 
+        Query query = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID like :id " ).addEntity(Likes.class);
+        List result = query.setLong("id",id).list();
         //Возвращаем информацию о лайках  конкретного пользоватяля
-        return (Likes) like.get(0);
+       // return (Likes) like.get(0);
+        return (Likes) result.get(0);
     }
 
     @Override
-    public int change(Long id)
+    public int increaseLikeAmount(Long id)
     {
-            // Получаем сессию hibernate
+        // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
-        Query query = session.createSQLQuery("UPDATE likes SET likes.AMOUNT = person.likes.AMOUNT + 1 where likes.PERSON_ID = " + id);
+        Query query = session.createSQLQuery("UPDATE likes SET likes.AMOUNT = likes.AMOUNT + 1 where likes.PERSON_ID = " + id);
         int result = query.executeUpdate();
 
         return result;

@@ -20,7 +20,7 @@ public class TestingHibernateConnectionClass
     public static void main(String[] args)
     {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                new String[]{"src/main/webapp/WEB-INF/applicationContext.xml"}, true);
+                new String[]{"applicationContext.xml"}, true);
         PersonDao dao = (PersonDao) context.getBean("PersonDao");
 
         Person data = new Person("Sam", "Daniels")
@@ -44,7 +44,7 @@ public class TestingHibernateConnectionClass
         Likes data2 ;
         data2 = likesDao.get(1L);
         System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
-        likesDao.change(1L);
+        likesDao.increaseLikeAmount(1L);
         data2 = likesDao.get(1L);
         System.out.println("Amount " + data2.getAmount() + "Id " + data2.getPersonId());
 

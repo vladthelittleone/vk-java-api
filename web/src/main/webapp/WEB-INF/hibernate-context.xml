@@ -9,7 +9,7 @@
    http://www.springframework.org/schema/context/spring-context-3.0.xsd
       ">
 
-    <context:property-placeholder location="../../resources/persistence.properties"/>
+    <context:property-placeholder location="classpath*:/resources/persistence.properties"/>
     <context:component-scan base-package="vk.java.api.persistence"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

@@ -18,7 +18,7 @@ public interface LikesDao
     /**
      * Изменяем информацию о лайках человека
      */
-    public int change(Long id);
+    public int increaseLikeAmount(Long id);
 
     /**
      * Добавляем новую запись о лайках человека
