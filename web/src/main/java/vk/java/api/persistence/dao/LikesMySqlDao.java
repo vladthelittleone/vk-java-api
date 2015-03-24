@@ -18,32 +18,32 @@ import java.util.List;
 @Transactional
 public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
 {
+
     @Override
     public Likes get(Long id)
     {
+        String GET_SQL = "SELECT * FROM likes WHERE likes.PERSON_ID like :id ";
 
         // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
 
-        // List like = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID = " + id)
-        //   .addEntity(Likes.class).list();
-
-        Query query = session.createSQLQuery("SELECT * FROM likes WHERE likes.PERSON_ID like :id ").addEntity(Likes.class);
+        Query query = session.createSQLQuery(GET_SQL).addEntity(Likes.class);
         List result = query.setLong("id", id).list();
+
         //Возвращаем информацию о лайках  конкретного пользоватяля
-        // return (Likes) like.get(0);
         return (Likes) result.get(0);
     }
 
     @Override
     public int increaseLikeAmount(Long id)
     {
+        String INC_SQL = "UPDATE likes SET likes.AMOUNT = likes.AMOUNT + 1 where likes.PERSON_ID = :id ";
+
         // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
-        Query query = session.createSQLQuery("UPDATE likes SET likes.AMOUNT = likes.AMOUNT + 1 where likes.PERSON_ID = " + id);
-        int result = query.executeUpdate();
+        Query query = session.createSQLQuery(INC_SQL).setLong("id", id);
 
-        return result;
+        return query.executeUpdate();
     }
 
     @Override
