@@ -7,9 +7,10 @@ import vk.java.api.persistence.domain.Person;
 /**
  * package: vk.java.api
  * date: 21.03.15
- *
+ * <p/>
  * Для запуска нужно перетащить applicationContext.xml и
  * hibernate-context.xml в resources.
+ *
  * @author Skurishin Vladislav
  */
 public class TestingHibernateConnectionClass

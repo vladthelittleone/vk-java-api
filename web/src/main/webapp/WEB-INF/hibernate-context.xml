@@ -45,4 +45,9 @@
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+    <bean name="LikesDao" class="vk.java.api.persistence.dao.LikesMySqlDao">
+        <constructor-arg name="binding" ref="likesDataSourceBinding"/>
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
 </beans>
