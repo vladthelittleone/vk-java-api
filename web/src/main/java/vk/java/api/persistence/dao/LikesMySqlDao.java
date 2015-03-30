@@ -8,7 +8,6 @@ import vk.java.api.persistence.domain.Likes;
 import vk.java.api.persistence.sharding.DataSourceBinding;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 /**
  * package: vk.java.api.persistence.dao
@@ -28,16 +27,15 @@ public class LikesMySqlDao extends AbstractDaoSupport implements LikesDao
     @Override
     public Likes get(Long id)
     {
-        String GET_SQL = "SELECT * FROM likes WHERE likes.PERSON_ID like :id ";
+        String GET_SQL = "SELECT * FROM likes WHERE likes.PERSON_ID LIKE :id ";
 
         // Получаем сессию hibernate
         Session session = getSessionFactory().getCurrentSession();
 
         Query query = session.createSQLQuery(GET_SQL).addEntity(Likes.class);
-        List result = query.setLong("id", id).list();
 
         //Возвращаем информацию о лайках  конкретного пользоватяля
-        return (Likes) result.get(0);
+        return (Likes) query.setLong("id", id).uniqueResult();
     }
 
     @Override

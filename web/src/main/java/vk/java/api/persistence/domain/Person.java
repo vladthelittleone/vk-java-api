@@ -48,9 +48,10 @@ public class Person implements Serializable
         return personId;
     }
 
-    public void setPersonId(Long personId)
+    public Person setPersonId(Long personId)
     {
         this.personId = personId;
+        return this;
     }
 
     @Column(name = "LAST_NAME")

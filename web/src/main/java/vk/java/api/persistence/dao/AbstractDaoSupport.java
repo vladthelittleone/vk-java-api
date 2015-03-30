@@ -1,7 +1,8 @@
 package vk.java.api.persistence.dao;
 
-import org.hibernate.Query;
-import org.hibernate.type.StandardBasicTypes;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Projections;
+import vk.java.api.persistence.domain.Person;
 import vk.java.api.persistence.sharding.HibernateShardingDaoSupport;
 import vk.java.api.persistence.sharding.ShardingContextHolder;
 
@@ -15,12 +16,10 @@ public class AbstractDaoSupport extends HibernateShardingDaoSupport
     {
         ShardingContextHolder.set(getBindingName(), 0L);
 
-        // Взять первое AtomicInteger значение в базе и хранить в кэше.
-        String SEQ_SQL = String.format("SELECT %s.nextval AS num FROM person", sequence);
+        Criteria criteria = getSessionFactory().getCurrentSession()
+                .createCriteria(Person.class)
+                .setProjection(Projections.max("PERSON_ID"));
 
-        Query query = getSessionFactory().getCurrentSession().createSQLQuery(SEQ_SQL)
-                .addScalar("num", StandardBasicTypes.LONG);
-
-        return (Long) query.uniqueResult();
+        return (Long) criteria.uniqueResult() + 1;
     }
 }

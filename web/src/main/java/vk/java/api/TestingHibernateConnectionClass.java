@@ -1,8 +1,7 @@
 package vk.java.api;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import vk.java.api.persistence.dao.PersonDao;
-import vk.java.api.persistence.domain.Person;
+import vk.java.api.persistence.dao.SequenceDao;
 
 /**
  * package: vk.java.api
@@ -18,18 +17,18 @@ public class TestingHibernateConnectionClass
     public static void main(String... args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
                 new String[] { "applicationContext.xml" }, true);
-        PersonDao dao = (PersonDao) context.getBean("PersonDao");
+        SequenceDao dao = (SequenceDao) context.getBean("SequenceDao");
 
-        Person data = new Person("Sam", "Daniels")
-                .setBirthday("22.22.22")
-                .setNickName("Blind")
-                .setPhoto("http://google.com/photo/?sda#@wd2@#$$5")
-                .setSex(1L)
-                .setPersonId(1L);
+//        Person data = new Person("Sam", "Daniels")
+//                .setBirthday("22.22.22")
+//                .setNickName("Blind")
+//                .setPhoto("http://google.com/photo/?sda#@wd2@#$$5")
+//                .setSex(1L)
+//                .setPersonId(1L);
+//
+//        dao.add(data);
 
-        dao.add(data);
-
-        System.out.println (dao.get(1L).getNickName());
+        System.out.println (dao.getNexValue());
     }
 
 }

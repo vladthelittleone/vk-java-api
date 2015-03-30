@@ -14,6 +14,7 @@
     <bean id="dataSource" class="vk.java.api.persistence.sharding.ShardingDataSource">
         <constructor-arg name="dataSourceBindings">
             <list value-type="vk.java.api.persistence.sharding.DataSourceBinding">
+                <ref bean="sequenceDataSourceBinding"/>
                 <ref bean="personDataSourceBinding"/>
                 <ref bean="likesDataSourceBinding"/>
             </list>
@@ -43,6 +44,15 @@
         </constructor-arg>
     </bean>
 
+    <bean id="sequenceDataSourceBinding" class="vk.java.api.persistence.sharding.DataSourceBinding">
+        <constructor-arg name="bindingName" value="SEQUENCE"/>
+        <constructor-arg name="dataSources">
+            <list>
+                <ref bean="sequenceDataSource"/>
+            </list>
+        </constructor-arg>
+    </bean>
+
     <bean name="PersonDao" class="vk.java.api.persistence.dao.PersonMySqlDao">
         <constructor-arg name="binding" ref="personDataSourceBinding"/>
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
@@ -50,6 +60,11 @@
 
     <bean name="LikesDao" class="vk.java.api.persistence.dao.LikesMySqlDao">
         <constructor-arg name="binding" ref="likesDataSourceBinding"/>
+        <constructor-arg name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean name="SequenceDao" class="vk.java.api.persistence.dao.SequenceMySqlDao">
+        <constructor-arg name="binding" ref="sequenceDataSourceBinding"/>
         <constructor-arg name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
