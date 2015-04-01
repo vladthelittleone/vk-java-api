@@ -13,17 +13,17 @@ import java.io.Serializable;
 public interface LikesDao
 {
     /**
-     * Возвращает информацию о лайках  с заданным id.
+     * Get information about likes with {@code id}.
      */
     public Likes get(Long id);
 
     /**
-     * Изменяем информацию о лайках человека
+     * Increase likes amount.
      */
-    public int increaseLikeAmount(Long id);
+    public int increaseLikesAmount(Long id);
 
     /**
-     * Добавляем новую запись о лайках человека
+     * Add new likes row.
      */
     public Serializable add(Likes like);
 }

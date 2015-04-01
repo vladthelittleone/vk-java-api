@@ -30,9 +30,10 @@ public class Likes implements Serializable
         return likesId;
     }
 
-    public void setLikesId(Long likesId)
+    public Likes setLikesId(Long likesId)
     {
         this.likesId = likesId;
+        return this;
     }
 
     @Column(name = "PERSON_ID")
@@ -41,9 +42,10 @@ public class Likes implements Serializable
         return personId;
     }
 
-    public void setPersonId(Long personId)
+    public Likes setPersonId(Long personId)
     {
         this.personId = personId;
+        return this;
     }
 
     @Column(name = "AMOUNT")
@@ -52,8 +54,9 @@ public class Likes implements Serializable
         return amount;
     }
 
-    public void setAmount(Long amount)
+    public Likes setAmount(Long amount)
     {
         this.amount = amount;
+        return this;
     }
 }

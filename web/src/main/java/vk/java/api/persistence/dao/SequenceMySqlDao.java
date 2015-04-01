@@ -1,41 +1,46 @@
 package vk.java.api.persistence.dao;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import vk.java.api.persistence.sharding.DataSourceBinding;
-import vk.java.api.persistence.sharding.ShardingContextHolder;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import vk.java.api.persistence.domain.Sequence;
 
 import javax.transaction.Transactional;
-import java.math.BigInteger;
 
 /**
  * @author Skurishin Vladislav
  * @since 30.03.15
  */
 @Transactional
-public class SequenceMySqlDao extends AbstractDaoSupport implements SequenceDao
+public class SequenceMySqlDao extends HibernateDaoSupport implements SequenceDao
 {
-    public SequenceMySqlDao(DataSourceBinding binding, SessionFactory sessionFactory)
+    public SequenceMySqlDao(SessionFactory sessionFactory)
     {
-        bindingName = binding.getBindingName();
         setSessionFactory(sessionFactory);
     }
 
     @Override
-    public long getNexValue()
+    public Long add(Sequence sequence)
     {
-        ShardingContextHolder.set(getBindingName(), 0L);
+        // Retrieve session from Hibernate
+        Session session = getSessionFactory().getCurrentSession();
 
-        String INCREMENT_SQL = "UPDATE sequence SET ID = LAST_INSERT_ID(ID + 1)";
-        String LAST_INSERT_ID_SQL = "SELECT LAST_INSERT_ID()";
+        // Save
+        return (Long) session.save(sequence);
+    }
+
+    @Override
+    public long getNextValue(String bindingName)
+    {
+        String INC_SQL = "UPDATE sequence SET sequence = sequence + 1 WHERE name = :name ";
 
         // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
 
-        session.createSQLQuery(INCREMENT_SQL).executeUpdate();
+        Query query = session.createSQLQuery(INC_SQL).setString("name", bindingName);
 
-        // Return last insert id. Imitate sequence.
-        return ((BigInteger) session.createSQLQuery(LAST_INSERT_ID_SQL)
-                .uniqueResult()).longValue();
+        // Get next value of sequence.
+        return query.executeUpdate();
     }
 }

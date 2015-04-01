@@ -11,7 +11,7 @@ import vk.java.api.persistence.domain.Person;
 public interface PersonDao
 {
     /**
-     * Возвращает информацию об человеке с заданным id.
+     * Return information about person with {@code id}, using hessian session.
      */
     public Person get(Long id);
 

@@ -2,9 +2,8 @@ package vk.java.api.persistence.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import vk.java.api.persistence.domain.Person;
-import vk.java.api.persistence.sharding.DataSourceBinding;
-import vk.java.api.persistence.sharding.ShardingContextHolder;
 
 import javax.transaction.Transactional;
 
@@ -15,37 +14,27 @@ import javax.transaction.Transactional;
  * @author Skurishin Vladislav
  */
 @Transactional
-public class PersonMySqlDao extends AbstractDaoSupport implements PersonDao
+public class PersonMySqlDao extends HibernateDaoSupport implements PersonDao
 {
-    public PersonMySqlDao(DataSourceBinding binding, SessionFactory sessionFactory)
+    public PersonMySqlDao(SessionFactory sessionFactory)
     {
-        bindingName = binding.getBindingName();
         setSessionFactory(sessionFactory);
     }
 
-    /**
-     * Возвращает информацию об человеке с заданным id, используя сессию hibernate.
-     */
+    @Override
     public Person get(Long id)
     {
-        ShardingContextHolder.set(getBindingName(), id);
 
-        // Получаем сессию hibernate
+        // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
 
-        // Retrieve existing person first
+        // Get
         return (Person) session.get(Person.class, id);
     }
 
-    /**
-     * Добавляем нового человека, используя сессию hibernate.
-     */
+    @Override
     public Long add(Person person)
     {
-        Long id = getNext(bindingName);
-
-        ShardingContextHolder.set(getBindingName(), id);
-
         // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
 

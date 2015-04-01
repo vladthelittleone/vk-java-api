@@ -4,8 +4,8 @@ package vk.java.api.persistence.dao;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import vk.java.api.persistence.domain.Likes;
-import vk.java.api.persistence.sharding.DataSourceBinding;
 
 import javax.transaction.Transactional;
 
@@ -16,11 +16,10 @@ import javax.transaction.Transactional;
  * @author Skurishin Vladislav
  */
 @Transactional
-public class LikesMySqlDao extends AbstractDaoSupport implements LikesDao
+public class LikesMySqlDao extends HibernateDaoSupport implements LikesDao
 {
-    public LikesMySqlDao(DataSourceBinding binding, SessionFactory sessionFactory)
+    public LikesMySqlDao(SessionFactory sessionFactory)
     {
-        bindingName = binding.getBindingName();
         setSessionFactory(sessionFactory);
     }
 
@@ -29,24 +28,26 @@ public class LikesMySqlDao extends AbstractDaoSupport implements LikesDao
     {
         String GET_SQL = "SELECT * FROM likes WHERE likes.PERSON_ID LIKE :id ";
 
-        // Получаем сессию hibernate
+        // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
 
         Query query = session.createSQLQuery(GET_SQL).addEntity(Likes.class);
 
-        //Возвращаем информацию о лайках  конкретного пользоватяля
+        // Get
         return (Likes) query.setLong("id", id).uniqueResult();
     }
 
     @Override
-    public int increaseLikeAmount(Long id)
+    public int increaseLikesAmount(Long id)
     {
         String INC_SQL = "UPDATE likes SET likes.AMOUNT = likes.AMOUNT + 1 where likes.PERSON_ID = :id ";
 
-        // Получаем сессию hibernate
+        // Retrieve session from Hibernate
         Session session = getSessionFactory().getCurrentSession();
+
         Query query = session.createSQLQuery(INC_SQL).setLong("id", id);
 
+        // Increase likes amount
         return query.executeUpdate();
     }
 
