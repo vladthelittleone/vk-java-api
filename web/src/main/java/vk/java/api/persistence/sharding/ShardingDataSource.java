@@ -1,6 +1,5 @@
 package vk.java.api.persistence.sharding;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.jdbc.datasource.DelegatingDataSource;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 
@@ -15,13 +14,10 @@ import java.util.Map;
  */
 public class ShardingDataSource extends DelegatingDataSource
 {
-    @NotNull
     private final Collection<DataSourceBinding> dataSourceBindings;
 
-    @NotNull
     private final DistributionStrategy strategy;
 
-    @NotNull
     private final AbstractRoutingDataSource routingDelegate;
 
     public ShardingDataSource(Collection<DataSourceBinding> dataSourceBindings, DistributionStrategy strategy)

@@ -54,7 +54,7 @@ public class Likes implements Serializable
         return amount;
     }
 
-    public Likes setAmount(Long amount)
+    public Likes setAmount(long amount)
     {
         this.amount = amount;
         return this;

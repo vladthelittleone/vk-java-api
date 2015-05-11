@@ -1,6 +1,5 @@
 package vk.java.api.persistence.sharding;
 
-import com.sun.istack.internal.NotNull;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -9,7 +8,6 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
  */
 public class HibernateShardingDaoSupport extends HibernateDaoSupport
 {
-    @NotNull
     protected String bindingName;
 
     public String getBindingName()

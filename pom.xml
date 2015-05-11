@@ -20,9 +20,16 @@
         <junit-version>4.11</junit-version>
         <mockito-version>1.9.5</mockito-version>
         <hibernate-version>4.3.8.Final</hibernate-version>
-        <hibernate-annotations>3.5.6-Final</hibernate-annotations>
         <mysql-version>5.1.24</mysql-version>
+        <httpcomponents-version>4.4.1</httpcomponents-version>
+        <javax-transaction-version>1.1</javax-transaction-version>
+        <jackson-version>2.2.3</jackson-version>
+        <servlet-api-version>2.5</servlet-api-version>
+        <slf4j-version>1.7.5</slf4j-version>
+        <logback-version>1.1.2</logback-version>
         <encoding>UTF-8</encoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
     </properties>
 
 </project>
